@@ -59,20 +59,17 @@ A fully functional **Kanban Board** built using **React.js** and **TypeScript**,
     Open your browser and navigate to http://localhost:3001.
 
 ### Key Components 🧩
-- **Board Component**
-
----
-
+**Board Component**
 - Manages the overall layout and state of the Kanban board.
 - Handles adding/removing columns dynamically.
-- Column Component
 
+**Column Component**
 - Represents individual columns (e.g., "To-Do", "In Progress", "Done").
 - Supports task addition, deletion, and drag-and-drop handling.
-Task Component
 
-Represents a single task item.
-Editable and draggable.
-BoardContext
+**Task Component**
+- Represents a single task item.
+- Editable and draggable.
 
-Provides a global state for managing columns and tasks.
+**BoardContext**
+- Provides a global state for managing columns and tasks.
