@@ -37,26 +37,28 @@ A fully functional **Kanban Board** built using **React.js** and **TypeScript**,
    git clone https://github.com/your-username/kanban-board.git
    cd kanban-board
 
-1. **Install Dependencies**  
+2. **Install Dependencies**  
    ```bash
     npm install
     # or
     yarn install
 
-1. **Clone the Repository**  
+3. **Clone the Repository**  
    ```bash
    git clone https://github.com/your-username/kanban-board.git
    cd kanban-board
 
-1. **Run the Development Server**  
+4. **Run the Development Server**  
    ```bash
     npm run dev
     # or
     yarn dev
 
-1. **Access the App**  
+5. **Access the App**  
    ```bash
     Open your browser and navigate to http://localhost:3001.
+
+---
 
 ### Key Components 🧩
 **Board Component**
