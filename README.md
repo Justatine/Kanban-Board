@@ -1,70 +1,76 @@
-# Getting Started with Create React App
+# Kanban Board with Dynamic Data Handling 🗂️
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A fully functional **Kanban Board** built using **React.js** and **TypeScript**, designed to manage tasks dynamically. This project demonstrates state management, drag-and-drop functionality, and component-based architecture.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## Features ✨
 
-### `npm start`
+- **Dynamic Task Management**: Add, edit, delete, and move tasks across columns.
+- **Drag-and-Drop**: Rearrange tasks using drag-and-drop (powered by `react-beautiful-dnd`).
+- **Column Management**: Add and delete columns dynamically.
+- **Responsive Design**: Optimized for both desktop and mobile.
+- **TypeScript Integration**: Ensures type safety and robust development.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Tech Stack 🛠️
 
-### `npm test`
+- **React.js**: Frontend framework.
+- **TypeScript**: Strongly typed superset of JavaScript.
+- **react-beautiful-dnd**: For drag-and-drop interactions.
+- **Styled Components**: For styling components.
+- **React Context API**: For state management.
+- **Vite**: Fast build tool for React projects.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## Installation and Setup 🚀
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Prerequisites
+- Node.js (16+)
+- npm or yarn package manager
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Steps to Run Locally
+1. **Clone the Repository**  
+   ```bash
+   git clone https://github.com/your-username/kanban-board.git
+   cd kanban-board
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. **Install Dependencies**  
+   ```bash
+    npm install
+    # or
+    yarn install
 
-### `npm run eject`
+1. **Clone the Repository**  
+   ```bash
+   git clone https://github.com/your-username/kanban-board.git
+   cd kanban-board
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+1. **Run the Development Server**  
+   ```bash
+    npm run dev
+    # or
+    yarn dev
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. **Access the App**  
+   ```bash
+    Open your browser and navigate to http://localhost:3001.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Key Components 🧩
+- Board Component
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Manages the overall layout and state of the Kanban board.
+Handles adding/removing columns dynamically.
+Column Component
 
-## Learn More
+Represents individual columns (e.g., "To-Do", "In Progress", "Done").
+Supports task addition, deletion, and drag-and-drop handling.
+Task Component
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Represents a single task item.
+Editable and draggable.
+BoardContext
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Provides a global state for managing columns and tasks.
