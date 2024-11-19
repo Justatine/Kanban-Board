@@ -6,9 +6,13 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>My Kanban Board</h1>
+        <h1>Simple Kanban Board</h1>
       </header>
-      <KanbanBoard />
+      <KanbanBoard initialTasks={{
+        todo: [{ id: 1, title: 'Task 1', status: 'todo' }],
+        inProgress: [{ id: 2, title: 'Task 2', status: 'inProgress' }],
+        done: [{ id: 3, title: 'Task 3', status: 'done' }]
+      }} />
     </div>
   );
 }

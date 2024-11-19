@@ -1,62 +1,74 @@
 import React, { useState } from 'react';
-import Column from './Column';
-import '../assets/css/KanbanBoard.css';
+import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd';
 
-function KanbanBoard() {
-  const [tasks, setTasks] = useState({
-    todo: [
-      { id: 1, title: 'Task 1', description: 'Description 1', completed:true },
-      { id: 2, title: 'Task 2', description: 'Description 2', completed:false },
-    ],
-    inProgress: [],
-    done: [],
-  });
+function KanbanBoard({ initialTasks }) {
+  const [tasks, setTasks] = useState(initialTasks);
 
-  const handleDragStart = (e, taskId, sourceColumn) => {
-    e.dataTransfer.setData('taskId', taskId);
-    e.dataTransfer.setData('sourceColumn', sourceColumn);
-  };
-
-  const handleDrop = (e, targetColumn) => {
-    const taskId = parseInt(e.dataTransfer.getData('taskId'));
-    const sourceColumn = e.dataTransfer.getData('sourceColumn');
+  const handleDragEnd = (result) => {
+    if (!result.destination) return;
     
-    if (sourceColumn === targetColumn) return;
+    const { source, destination } = result;
+    const sourceList = [...tasks[source.droppableId]];
+    const destList = source.droppableId !== destination.droppableId 
+      ? [...tasks[destination.droppableId]]
+      : sourceList;
+    
+    const [removed] = sourceList.splice(source.index, 1);
+    removed.status = destination.droppableId;
+    destList.splice(destination.index, 0, removed);
 
-    setTasks(prev => {
-      const task = prev[sourceColumn].find(t => t.id === taskId);
-      return {
-        ...prev,
-        [sourceColumn]: prev[sourceColumn].filter(t => t.id !== taskId),
-        [targetColumn]: [...prev[targetColumn], task],
-      };
+    setTasks({
+      ...tasks,
+      [source.droppableId]: sourceList,
+      [destination.droppableId]: destList
     });
   };
 
   return (
-    <div className="kanban-board">
-      <Column 
-        title="To Do" 
-        tasks={tasks.todo}
-        onDragStart={handleDragStart}
-        onDrop={handleDrop}
-        columnId="todo"
-      />
-      <Column 
-        title="In Progress" 
-        tasks={tasks.inProgress}
-        onDragStart={handleDragStart}
-        onDrop={handleDrop}
-        columnId="inProgress"
-      />
-      <Column 
-        title="Done" 
-        tasks={tasks.done}
-        onDragStart={handleDragStart}
-        onDrop={handleDrop}
-        columnId="done"
-      />
-    </div>
+    <DragDropContext onDragEnd={handleDragEnd}>
+      <div style={{ display: 'flex', justifyContent: 'space-around', padding: '20px' }}>
+        {Object.keys(tasks).map((column) => (
+          <div key={column} style={{ width: '30%' }}>
+            <h2>{column}</h2>
+            <Droppable droppableId={column}>
+              {(provided) => (
+                <div
+                  {...provided.droppableProps}
+                  ref={provided.innerRef}
+                  style={{
+                    backgroundColor: column === 'done' ? '#e6ffe6' : column === 'inProgress' ? '#ffffe0' : '#f4f4f4',
+                    padding: '10px',
+                    minHeight: '300px'
+                  }}
+                >
+                  {tasks[column].map((task, index) => (
+                    <Draggable key={task.id} draggableId={String(task.id)} index={index}>
+                      {(provided) => (
+                        <div
+                          ref={provided.innerRef}
+                          {...provided.draggableProps}
+                          {...provided.dragHandleProps}
+                          style={{
+                            backgroundColor: task.status === 'done' ? '#90EE90' : task.status === 'inProgress' ? '#fdf0ac' : 'white',
+                            padding: '10px',
+                            margin: '10px 0',
+                            borderRadius: '4px',
+                            ...provided.draggableProps.style
+                          }}
+                        >
+                          {task.title}
+                        </div>
+                      )}
+                    </Draggable>
+                  ))}
+                  {provided.placeholder}
+                </div>
+              )}
+            </Droppable>
+          </div>
+        ))}
+      </div>
+    </DragDropContext>
   );
 }
 
